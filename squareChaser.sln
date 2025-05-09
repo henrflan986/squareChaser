@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "squareChaser", "squareChaser\squareChaser.csproj", "{24E3E296-E6B6-4C4F-99CE-0185A1E78CDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24E3E296-E6B6-4C4F-99CE-0185A1E78CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E3E296-E6B6-4C4F-99CE-0185A1E78CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E3E296-E6B6-4C4F-99CE-0185A1E78CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E3E296-E6B6-4C4F-99CE-0185A1E78CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C2F5C85-5A19-4CB5-87AA-7319BBD815E2}
+	EndGlobalSection
+EndGlobal
