@@ -25,15 +25,16 @@ namespace squareChaser
         Rectangle player2 = new Rectangle(250, 200, 15, 15);
         Rectangle ball = new Rectangle(295, 195, 15, 15);
         Rectangle speedball = new Rectangle(400, 195, 15, 15);
-        Rectangle freezeBall = new Rectangle( 200, 300, 10, 10);
+        Rectangle freezeBall = new Rectangle(200, 300, 10, 10);
         Rectangle border = new Rectangle(100, 100, 400, 400);
         Rectangle filler = new Rectangle(125, 125, 350, 350);
-       
+        Rectangle bombBall = new Rectangle(360, 400, 10, 10);
+        Rectangle bomb;
 
         int player1Score = 0;
         int player2Score = 0;
 
-       // int playerSpeed = 3;
+        // int playerSpeed = 3;
         int player1Speed = 3;
         int player2Speed = 3;
 
@@ -52,6 +53,7 @@ namespace squareChaser
         SolidBrush greenBrush = new SolidBrush(Color.Green);
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush purpleBrush = new SolidBrush(Color.Purple);
+        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
         public Form1()
         {
             InitializeComponent();
@@ -129,11 +131,13 @@ namespace squareChaser
             e.Graphics.FillRectangle(greenBrush, ball);
             e.Graphics.FillRectangle(blackBrush, speedball);
             e.Graphics.FillEllipse(purpleBrush, freezeBall);
+            e.Graphics.FillEllipse(purpleBrush, bombBall);
+            e.Graphics.FillEllipse(yellowBrush, bomb);
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-        
+
 
             //move player 1
             if (wDown == true && player1.Y > 125)
@@ -175,7 +179,7 @@ namespace squareChaser
             }
 
             //check if ball hits top wall or the bottom wall
-          
+
             //check if ball hits either player.
             //If it does change the direction
             //and place the ball in front of the player hit
@@ -226,46 +230,57 @@ namespace squareChaser
                 freezeBall.Y = randGen.Next(125, 475);
 
                 player1Speed = 0;
-               freezeTimer.Enabled = true;
+                freezeTimer.Enabled = true;
 
             }
 
-            //if (player1.IntersectsWith(bombBall))
-            //{
-            //    bombBall.X = randGen.Next(125, 475);
-            //    bombBall.Y = randGen.Next(125, 475);
+            if (player1.IntersectsWith(bombBall))
+            {
+                bomb = new Rectangle(randGen.Next(100, 401), randGen.Next(100, 401), 100, 100);
 
-            //    player2Speed = 0;
-            //    freezeTimer.Enabled = true;
+                bombBall.X = randGen.Next(125, 475);
+                bombBall.Y = randGen.Next(125, 475);
 
+                if (player2.IntersectsWith(bomb))
+                {
+                    winLabel.Visible = true;
+                    winLabel.Text = "Player 1 wins!!";
+                    gameEngine.Enabled = false;
+                }
 
+            }
+            if (player2.IntersectsWith(bombBall))
+            {
+                bomb = new Rectangle(randGen.Next(100, 401), randGen.Next(100, 401), 100, 100);
 
+                bombBall.X = randGen.Next(125, 475);
+                bombBall.Y = randGen.Next(125, 475);
 
-            //}
-            //else if (player2.IntersectsWith(bombBall))
-            //{
-            //    bombBall.X = randGen.Next(125, 475);
-            //    bombBall.Y = randGen.Next(125, 475);
+                if (player1.IntersectsWith(bomb))
+                {
+                    winLabel.Visible = true;
+                    winLabel.Text = "Player 1 wins!!";
+                    gameEngine.Enabled = false;
+                }
 
-            //    player1Speed = 0;
-            //    freezeTimer.Enabled = true;
-
+            }
                 //check if game is over
                 if (player1Score == 5)
-            {
-                winLabel.Visible = true;
-                winLabel.Text = "Player 1 wins!!";
-                gameEngine.Enabled = false;
-            }
-            else if (player2Score == 5)
-            {
-                gameEngine.Enabled = false;
-                winLabel.Visible = true;
-                winLabel.Text = "Player 2 wins!!";
-            }
+                {
+                    winLabel.Visible = true;
+                    winLabel.Text = "Player 1 wins!!";
+                    gameEngine.Enabled = false;
+                }
+                else if (player2Score == 5)
+                {
+                    gameEngine.Enabled = false;
+                    winLabel.Visible = true;
+                    winLabel.Text = "Player 2 wins!!";
+                }
 
-            Refresh(); // runs the Paint method
-        }
+                Refresh(); // runs the Paint method
+            }
+        
 
         private void freezeTimer_Tick(object sender, EventArgs e)
         {
@@ -275,5 +290,6 @@ namespace squareChaser
         }
     }
 }
+
 
 
